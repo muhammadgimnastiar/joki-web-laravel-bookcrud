@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\bookController;
 use App\Http\Controllers\BookProductController;
+use App\Http\Controllers\BookJenisController;
+use App\Http\Controllers\BookIdentityController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -18,8 +20,13 @@ use App\Http\Controllers\HomeController;
 
 
 Route::group(['middleware'], function(){
-    Route::resource('book', BookProductController::class);
     Auth::routes();
+    Route::resource('book', BookProductController::class);
+
+    Route::resource('jenis', BookJenisController::class);
+
+    Route::resource('identity', BookIdentityController::class);
+    
     Route::get('/', [bookController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
